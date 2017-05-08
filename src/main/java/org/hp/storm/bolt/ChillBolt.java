@@ -4,14 +4,15 @@ import org.apache.storm.task.OutputCollector;
 import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.topology.base.BaseRichBolt;
+import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
 
 import java.util.Map;
 
 /**
- * Created by hanpeng on 2017/5/7.
+ * Created by hanpeng on 2017/5/8.
  */
-public class TestBolt extends BaseRichBolt {
+public class ChillBolt extends BaseRichBolt {
     /**
      * Called when a task for this component is initialized within a worker on the cluster.
      * It provides the bolt with the environment in which the bolt executes.
@@ -44,8 +45,24 @@ public class TestBolt extends BaseRichBolt {
      * @param input The input tuple to be processed.
      */
     public void execute(Tuple input) {
-        String str = input.getString(0);
-        System.out.println("Bolt接收到了:"+str);
+        Map map = (Map) input.getValue(0);
+        boolean warning = false;
+        String carState = (String) map.get("carState");
+        switch (carState) {
+            case "1":
+                carState = "奔跑中";
+                break;
+            case "2":
+                carState = "休息中";
+                break;
+        }
+        int temp = (int) map.get("temp");
+        if (temp > -15) {
+            warning = true;
+        }
+
+        System.out.println("ChillBolt 冷藏运输车:" + "车牌号码:" + map.get("carNum") +
+                " 时速:" + map.get("carSpeed") + " 当前状态:" + carState + " 冷库温度:" + map.get("temp") + "  车辆报警:" + warning);
 
     }
 

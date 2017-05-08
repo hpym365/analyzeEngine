@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Created by hanpeng on 2017/5/6.
  */
-public class TestSpout extends BaseRichSpout {
+public class DataSpout extends BaseRichSpout {
 
     SpoutOutputCollector collector;
 
