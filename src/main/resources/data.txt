@@ -1,0 +1,4 @@
+{"carNum":"辽A11111","carType":"1","carSpeed":55,"carState":"1","feng":true}
+{"carNum":"辽A11112","carType":"1","carSpeed":55,"carState":"2","feng":false}
+{"carNum":"辽A22221","carType":"2","carSpeed":70,"carState":"1","temp":-18}
+{"carNum":"辽A22222","carType":"2","carSpeed":70,"carState":"2","temp":18}
